@@ -1,0 +1,23 @@
+Exercise 5: Advanced Workflow
+
+1. Initialize a repository with multiple files
+   git init
+   touch app.js index.html style.css
+   git add .
+   git commit -m "Initial files"
+
+2. Create a .gitignore file
+   echo "node_modules/" > .gitignore
+   git add .gitignore
+   git commit -m "Add gitignore"
+
+3. Use git stash to save work in progress
+   git stash
+   git stash pop
+
+4. Create and tag a release
+   git tag -a v1.0 -m "First release"
+
+5. Push everything to GitHub including tags
+   git push origin branch-name
+   git push origin 

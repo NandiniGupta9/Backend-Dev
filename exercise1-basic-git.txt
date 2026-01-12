@@ -1,0 +1,21 @@
+Exercise 1: Basic Git Workflow
+
+1. Create a new directory and initialize Git
+   mkdir git-practice
+   cd git-practice
+   git init
+
+2. Create a README.md file
+   echo "# Git Practice" > README.md
+
+3. Add and commit the file
+   git add README.md
+   git commit -m "Initial commit"
+
+4. Make changes and commit again
+   echo "Learning Git basics" >> README.md
+   git add README.md
+   git commit -m "Update README"
+
+5. View commit history
+   git log 

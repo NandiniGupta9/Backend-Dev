@@ -1,0 +1,21 @@
+Exercise 3: Conflict Resolution
+
+1. Create two branches from main
+   git checkout -b branch-one
+   git checkout -b branch-two
+
+2. Modify the same line in a file in both branches
+   echo "Line from branch one" > conflict.txt
+   echo "Line from branch two" > conflict.txt
+
+3. Merge one branch into main
+   git checkout main
+   git merge branch-one
+
+4. Attempt to merge the second branch
+   git merge branch-two
+
+5. Resolve the conflict manually
+   Open conflict.txt and fix the conflict
+   git add conflict.txt
+   git commit -m "Resolve merge conflict"
