@@ -7,7 +7,28 @@
 </head>
 <body>
     <h1> Welcome to user page</h1>
-    <h2> <%=userData.name%></h2>
-    <h2> <%=userData.age%></h2>
+<form action="/api/user" method="post"> 
+<input type="text" name="name" placeholder="Enter name">
+<input type="number" age="age" placeholder="Enter age">
+<button type="submit">Submit</button>
+</form>
+
+
+
+
+<% userData.forEach((ele)=>{ %>
+  <li>  <%= ele.name %>  <%=ele.age %> 
+    
+  
+        <button> <a href ="api/user/<%= ele.id %>">
+        Delete </a> </button> </li>
+    <% }) %> 
+
+
+
+
+
+    <!--<h2> <%=userData.name%></h2>
+    <h2> <%=userData.age%></h2> -->
 </body>
 </html>
