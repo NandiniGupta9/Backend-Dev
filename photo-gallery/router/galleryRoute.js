@@ -1,22 +1,6 @@
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import fs from "fs";
-import galleryRoute from "./router/galleryRoute.js"
-import dotenv from "dotenv"
-dotenv.config();
-
-const app = express();
-let PORT=3000;
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
-
-/*app.get("/", (req, res) => {
+import express from 'express';
+const router=express.Router();
+router.get("/", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = 10;
 
@@ -43,9 +27,5 @@ app.use(express.static(path.join(__dirname, "public")));
       totalPages
     });
   });
-});*/
-app.use("/api",galleryRoute);
-app.use("");
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
 });
+export default router;

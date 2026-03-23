@@ -1,0 +1,1 @@
+const showGallery=(req,res)=> 
