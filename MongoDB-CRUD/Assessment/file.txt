@@ -1,0 +1,99 @@
+1. Advantages of using Mongoose over the native MongoDB driver
+
+Mongoose is an ODM (Object Data Modeling) library that adds structure and features on top of MongoDB.
+
+ Advantages:
+Schema-based structure → Defines data format
+Built-in validation → Ensures correct data
+Middleware (hooks) → Run logic before/after operations
+Populate → Handles relationships between collections
+Cleaner syntax → Easier and readable queries
+Models → Organized, reusable code
+
+ Summary:
+Mongoose = Easier + Structured + Safer
+Native driver = Flexible but manual
+
+2. Difference between findOneAndUpdate() and updateOne()
+updateOne()
+Updates one document
+Returns status object (not the document)
+await User.updateOne(
+  { email: "a@gmail.com" },
+  { $set: { age: 22 } }
+);
+ findOneAndUpdate()
+Finds and updates document
+Returns document (before/after update)
+const user = await User.findOneAndUpdate(
+  { email: "a@gmail.com" },
+  { age: 22 },
+  { new: true }
+);
+ Key Difference:
+updateOne() → result info
+findOneAndUpdate() → updated document
+3. Purpose of Middleware in Mongoose
+
+Middleware (hooks) allows execution of functions before or after database operations.
+
+ Types:
+Pre middleware → runs before (e.g., pre("save"))
+Post middleware → runs after (e.g., post("save"))
+Purpose:
+Hash passwords
+Validate/modify data
+Logging
+Trigger side effects
+userSchema.pre("save", function(next) {
+  console.log("Saving user...");
+  next();
+});
+4. How to implement pagination in Mongoose
+
+Pagination is done using skip() and limit().
+
+ Example:
+const page = 1;
+const limit = 10;
+
+const data = await User.find()
+  .skip((page - 1) * limit)
+  .limit(limit);
+ With total pages:
+const total = await User.countDocuments();
+
+return {
+  total,
+  page,
+  pages: Math.ceil(total / limit),
+  data
+};
+ Tip:
+Use pagination to improve performance
+For large data → prefer cursor-based pagination
+5. Embedding vs Referencing in MongoDB
+ Embedding (Nested Documents)
+{
+  name: "User",
+  orders: [{ item: "Pizza", price: 200 }]
+}
+ Use when:
+Data is small
+Strong relationship
+Always fetched together
+ Pros:
+Faster reads
+Simple queries
+ Referencing (Using ObjectId)
+{
+  name: "User",
+  orders: [ObjectId("...")]
+}
+ Use when:
+Data is large
+Needs frequent updates
+Shared across documents
+ Pros:
+No duplication
+Better scalability
